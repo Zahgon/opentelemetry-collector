@@ -1,7 +1,4 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package otelcol // import "go.opentelemetry.io/collector/otelcol"
+package otelcol
 
 import (
 	"sync/atomic"
@@ -15,41 +12,30 @@ type collectorCore struct {
 	delegate atomic.Pointer[zapcore.Core]
 }
 
-func newCollectorCore(core zapcore.Core) *collectorCore {
-	cc := &collectorCore{}
-	cc.SetCore(core)
-	return cc
-}
+func newCollectorCore(core zapcore.Core) *collectorCore { _ = "STUB: not implemented"; return nil }
 
-func (c *collectorCore) Enabled(l zapcore.Level) bool {
-	return c.loadDelegate().Enabled(l)
-}
+func (c *collectorCore) Enabled(l zapcore.Level) bool { _ = "STUB: not implemented"; return false }
 
 func (c *collectorCore) With(f []zapcore.Field) zapcore.Core {
-	return newCollectorCore(c.loadDelegate().With(f))
+	_ = "STUB: not implemented"
+	return *new(zapcore.Core)
 }
 
 func (c *collectorCore) Check(e zapcore.Entry, ce *zapcore.CheckedEntry) *zapcore.CheckedEntry {
-	core := c.loadDelegate()
-	if core.Enabled(e.Level) {
-		return ce.AddCore(e, core)
-	}
-	return ce
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func (c *collectorCore) Write(e zapcore.Entry, f []zapcore.Field) error {
-	return c.loadDelegate().Write(e, f)
+	_ = "STUB: not implemented"
+	return nil
 }
 
-func (c *collectorCore) Sync() error {
-	return c.loadDelegate().Sync()
-}
+func (c *collectorCore) Sync() error { _ = "STUB: not implemented"; return nil }
 
-func (c *collectorCore) SetCore(core zapcore.Core) {
-	c.delegate.Store(&core)
-}
+func (c *collectorCore) SetCore(core zapcore.Core) { _ = "STUB: not implemented"; return }
 
-// loadDelegate returns the delegate.
 func (c *collectorCore) loadDelegate() zapcore.Core {
-	return *c.delegate.Load()
+	_ = "STUB: not implemented"
+	return *new(zapcore.Core)
 }

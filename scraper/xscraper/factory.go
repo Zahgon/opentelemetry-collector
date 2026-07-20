@@ -1,42 +1,29 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package xscraper // import "go.opentelemetry.io/collector/scraper/xscraper"
+package xscraper
 
 import (
 	"context"
 
 	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/pipeline"
 	"go.opentelemetry.io/collector/scraper"
 )
 
 type Factory interface {
 	scraper.Factory
 
-	// CreateProfiles creates a Profiles scraper based on this config.
-	// If the scraper type does not support profiles,
-	// this function returns the error [pipeline.ErrSignalNotSupported].
 	CreateProfiles(ctx context.Context, set scraper.Settings, cfg component.Config) (Profiles, error)
 
-	// ProfilesStability gets the stability level of the Profiles scraper.
 	ProfilesStability() component.StabilityLevel
 }
 
-// FactoryOption apply changes to Options.
 type FactoryOption interface {
-	// applyOption applies the option.
 	applyOption(o *factory)
 }
 
 var _ FactoryOption = (*factoryOptionFunc)(nil)
 
-// factoryOptionFunc is a FactoryOption created through a function.
 type factoryOptionFunc func(*factory)
 
-func (f factoryOptionFunc) applyOption(o *factory) {
-	f(o)
-}
+func (f factoryOptionFunc) applyOption(o *factory) { _ = "STUB: not implemented"; return }
 
 type factory struct {
 	scraper.Factory
@@ -47,47 +34,33 @@ type factory struct {
 }
 
 func (f *factory) ProfilesStability() component.StabilityLevel {
-	return f.profilesStabilityLevel
+	_ = "STUB: not implemented"
+	return *new(component.StabilityLevel)
 }
 
 func (f *factory) CreateProfiles(ctx context.Context, set scraper.Settings, cfg component.Config) (Profiles, error) {
-	if f.createProfilesFunc == nil {
-		return nil, pipeline.ErrSignalNotSupported
-	}
-	return f.createProfilesFunc(ctx, set, cfg)
+	_ = "STUB: not implemented"
+	return *new(Profiles), nil
 }
 
-// WithLogs overrides the default "error not supported" implementation for CreateLogs and the default "undefined" stability level.
 func WithLogs(createLogs scraper.CreateLogsFunc, sl component.StabilityLevel) FactoryOption {
-	return factoryOptionFunc(func(o *factory) {
-		o.opts = append(o.opts, scraper.WithLogs(createLogs, sl))
-	})
+	_ = "STUB: not implemented"
+	return *new(FactoryOption)
 }
 
-// WithMetrics overrides the default "error not supported" implementation for CreateMetrics and the default "undefined" stability level.
 func WithMetrics(createMetrics scraper.CreateMetricsFunc, sl component.StabilityLevel) FactoryOption {
-	return factoryOptionFunc(func(o *factory) {
-		o.opts = append(o.opts, scraper.WithMetrics(createMetrics, sl))
-	})
+	_ = "STUB: not implemented"
+	return *new(FactoryOption)
 }
 
-// CreateProfilesFunc is the equivalent of Factory.CreateProfiles().
 type CreateProfilesFunc func(context.Context, scraper.Settings, component.Config) (Profiles, error)
 
-// WithProfiles overrides the default "error not supported" implementation for CreateProfiles and the default "undefined" stability level.
 func WithProfiles(createProfiles CreateProfilesFunc, sl component.StabilityLevel) FactoryOption {
-	return factoryOptionFunc(func(o *factory) {
-		o.profilesStabilityLevel = sl
-		o.createProfilesFunc = createProfiles
-	})
+	_ = "STUB: not implemented"
+	return *new(FactoryOption)
 }
 
-// NewFactory creates a Factory with experimental capabilities and wraps a scraper.Factory.
 func NewFactory(cfgType component.Type, createDefaultConfig component.CreateDefaultConfigFunc, options ...FactoryOption) Factory {
-	f := &factory{}
-	for _, opt := range options {
-		opt.applyOption(f)
-	}
-	f.Factory = scraper.NewFactory(cfgType, createDefaultConfig, f.opts...)
-	return f
+	_ = "STUB: not implemented"
+	return *new(Factory)
 }

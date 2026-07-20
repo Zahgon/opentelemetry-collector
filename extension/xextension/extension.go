@@ -1,7 +1,4 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package xextension // import "go.opentelemetry.io/collector/extension/xextension"
+package xextension
 
 import (
 	"go.opentelemetry.io/collector/component"
@@ -19,9 +16,7 @@ type FactoryOption interface {
 
 type factoryOptionFunc func(*factory)
 
-func (f factoryOptionFunc) applyOption(o *factory) {
-	f(o)
-}
+func (f factoryOptionFunc) applyOption(o *factory) { _ = "STUB: not implemented"; return }
 
 type factory struct {
 	extension.Factory
@@ -29,9 +24,8 @@ type factory struct {
 }
 
 func WithDeprecatedTypeAlias(alias component.Type) FactoryOption {
-	return factoryOptionFunc(func(o *factory) {
-		o.SetDeprecatedAlias(alias)
-	})
+	_ = "STUB: not implemented"
+	return *new(FactoryOption)
 }
 
 func NewFactory(
@@ -41,11 +35,6 @@ func NewFactory(
 	sl component.StabilityLevel,
 	options ...FactoryOption,
 ) Factory {
-	f := &factory{TypeAliasHolder: componentalias.NewTypeAliasHolder()}
-	for _, opt := range options {
-		opt.applyOption(f)
-	}
-	f.Factory = extension.NewFactory(cfgType, createDefaultConfig, createServiceExtension, sl)
-	f.Factory.(componentalias.TypeAliasHolder).SetDeprecatedAlias(f.DeprecatedAlias())
-	return f
+	_ = "STUB: not implemented"
+	return *new(Factory)
 }

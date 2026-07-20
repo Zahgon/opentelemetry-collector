@@ -1,39 +1,9 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
+package pmetricotlp
 
-package pmetricotlp // import "go.opentelemetry.io/collector/pdata/pmetric/pmetricotlp"
+func (ms ExportResponse) MarshalProto() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
-import (
-	"slices"
+func (ms ExportResponse) UnmarshalProto(data []byte) error { _ = "STUB: not implemented"; return nil }
 
-	"go.opentelemetry.io/collector/pdata/internal/json"
-)
+func (ms ExportResponse) MarshalJSON() ([]byte, error) { _ = "STUB: not implemented"; return nil, nil }
 
-// MarshalProto marshals ExportResponse into proto bytes.
-func (ms ExportResponse) MarshalProto() ([]byte, error) {
-	size := ms.orig.SizeProto()
-	buf := make([]byte, size)
-	_ = ms.orig.MarshalProto(buf)
-	return buf, nil
-}
-
-// UnmarshalProto unmarshalls ExportResponse from proto bytes.
-func (ms ExportResponse) UnmarshalProto(data []byte) error {
-	return ms.orig.UnmarshalProto(data)
-}
-
-// MarshalJSON marshals ExportResponse into JSON bytes.
-func (ms ExportResponse) MarshalJSON() ([]byte, error) {
-	dest := json.BorrowStream(nil)
-	defer json.ReturnStream(dest)
-	ms.orig.MarshalJSON(dest)
-	return slices.Clone(dest.Buffer()), dest.Error()
-}
-
-// UnmarshalJSON unmarshalls ExportResponse from JSON bytes.
-func (ms ExportResponse) UnmarshalJSON(data []byte) error {
-	iter := json.BorrowIterator(data)
-	defer json.ReturnIterator(iter)
-	ms.orig.UnmarshalJSON(iter)
-	return iter.Error()
-}
+func (ms ExportResponse) UnmarshalJSON(data []byte) error { _ = "STUB: not implemented"; return nil }

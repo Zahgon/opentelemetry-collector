@@ -1,7 +1,4 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package scraper // import "go.opentelemetry.io/collector/scraper"
+package scraper
 
 import (
 	"context"
@@ -10,18 +7,17 @@ import (
 	"go.opentelemetry.io/collector/pdata/pmetric"
 )
 
-// Metrics is the base interface for metrics scrapers.
 type Metrics interface {
 	component.Component
 
 	ScrapeMetrics(context.Context) (pmetric.Metrics, error)
 }
 
-// ScrapeMetricsFunc is a helper function that is similar to Metrics.ScrapeMetrics.
 type ScrapeMetricsFunc ScrapeFunc[pmetric.Metrics]
 
 func (sf ScrapeMetricsFunc) ScrapeMetrics(ctx context.Context) (pmetric.Metrics, error) {
-	return sf(ctx)
+	_ = "STUB: not implemented"
+	return *new(pmetric.Metrics), nil
 }
 
 type metrics struct {
@@ -29,15 +25,7 @@ type metrics struct {
 	ScrapeMetricsFunc
 }
 
-// NewMetrics creates a new Metrics scraper.
 func NewMetrics(scrape ScrapeMetricsFunc, options ...Option) (Metrics, error) {
-	if scrape == nil {
-		return nil, errNilFunc
-	}
-	bs := &metrics{
-		baseScraper:       newBaseScraper(options),
-		ScrapeMetricsFunc: scrape,
-	}
-
-	return bs, nil
+	_ = "STUB: not implemented"
+	return *new(Metrics), nil
 }

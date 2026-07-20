@@ -1,7 +1,4 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package storage // import "go.opentelemetry.io/collector/extension/xextension/storage"
+package storage
 
 import "context"
 
@@ -9,32 +6,23 @@ type nopClient struct{}
 
 var nopClientInstance Client = &nopClient{}
 
-// NewNopClient returns a nop client
-func NewNopClient() Client {
-	return nopClientInstance
-}
+func NewNopClient() Client { _ = "STUB: not implemented"; return *new(Client) }
 
-// Get does nothing, and returns nil, nil
 func (c nopClient) Get(context.Context, string) ([]byte, error) {
-	return nil, nil // no result, but no problem
+	_ = "STUB: not implemented"
+	return nil, nil
 }
 
-// Set does nothing and returns nil
 func (c nopClient) Set(context.Context, string, []byte) error {
-	return nil // no problem
-}
-
-// Delete does nothing and returns nil
-func (c nopClient) Delete(context.Context, string) error {
-	return nil // no problem
-}
-
-// Close does nothing and returns nil
-func (c nopClient) Close(context.Context) error {
+	_ = "STUB: not implemented"
 	return nil
 }
 
-// Batch does nothing, and returns nil, nil
+func (c nopClient) Delete(context.Context, string) error { _ = "STUB: not implemented"; return nil }
+
+func (c nopClient) Close(context.Context) error { _ = "STUB: not implemented"; return nil }
+
 func (c nopClient) Batch(context.Context, ...*Operation) error {
-	return nil // no result, but no problem
+	_ = "STUB: not implemented"
+	return nil
 }

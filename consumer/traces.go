@@ -1,7 +1,4 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package consumer // import "go.opentelemetry.io/collector/consumer"
+package consumer
 
 import (
 	"context"
@@ -10,21 +7,17 @@ import (
 	"go.opentelemetry.io/collector/pdata/ptrace"
 )
 
-// Traces is an interface that receives ptrace.Traces, processes it
-// as needed, and sends it to the next processing node if any or to the destination.
 type Traces interface {
 	internal.BaseConsumer
-	// ConsumeTraces processes the traces. After the function returns, the traces are no longer accessible,
-	// and accessing them is considered undefined behavior.
+
 	ConsumeTraces(ctx context.Context, td ptrace.Traces) error
 }
 
-// ConsumeTracesFunc is a helper function that is similar to ConsumeTraces.
 type ConsumeTracesFunc func(ctx context.Context, td ptrace.Traces) error
 
-// ConsumeTraces calls f(ctx, td).
 func (f ConsumeTracesFunc) ConsumeTraces(ctx context.Context, td ptrace.Traces) error {
-	return f(ctx, td)
+	_ = "STUB: not implemented"
+	return nil
 }
 
 type baseTraces struct {
@@ -32,13 +25,7 @@ type baseTraces struct {
 	ConsumeTracesFunc
 }
 
-// NewTraces returns a Traces configured with the provided options.
 func NewTraces(consume ConsumeTracesFunc, options ...Option) (Traces, error) {
-	if consume == nil {
-		return nil, errNilFunc
-	}
-	return &baseTraces{
-		BaseImpl:          internal.NewBaseImpl(options...),
-		ConsumeTracesFunc: consume,
-	}, nil
+	_ = "STUB: not implemented"
+	return *new(Traces), nil
 }
