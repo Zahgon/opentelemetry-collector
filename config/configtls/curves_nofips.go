@@ -1,9 +1,6 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 //go:build !requirefips
 
-package configtls // import "go.opentelemetry.io/collector/config/configtls"
+package configtls
 
 import "crypto/tls"
 

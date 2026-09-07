@@ -1,35 +1,24 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package zpagesextension // import "go.opentelemetry.io/collector/extension/zpagesextension"
+package zpagesextension
 
 import (
 	"context"
 
 	"go.opentelemetry.io/collector/component"
-	"go.opentelemetry.io/collector/config/confighttp"
 	"go.opentelemetry.io/collector/extension"
-	"go.opentelemetry.io/collector/extension/zpagesextension/internal/metadata"
 )
 
 const (
 	defaultEndpoint = "localhost:55679"
 )
 
-// NewFactory creates a factory for Z-Pages extension.
-func NewFactory() extension.Factory {
-	return extension.NewFactory(metadata.Type, createDefaultConfig, create, metadata.ExtensionStability)
-}
+func NewFactory() extension.Factory { _ = "STUB: not implemented"; return *new(extension.Factory) }
 
 func createDefaultConfig() component.Config {
-	serverConfig := confighttp.NewDefaultServerConfig()
-	serverConfig.NetAddr.Endpoint = defaultEndpoint
-	return &Config{
-		ServerConfig: serverConfig,
-	}
+	_ = "STUB: not implemented"
+	return *new(component.Config)
 }
 
-// create creates the extension based on this config.
 func create(_ context.Context, set extension.Settings, cfg component.Config) (extension.Extension, error) {
-	return newServer(cfg.(*Config), set.TelemetrySettings), nil
+	_ = "STUB: not implemented"
+	return *new(extension.Extension), nil
 }

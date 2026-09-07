@@ -1,7 +1,4 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package extensionauthtest // import "go.opentelemetry.io/collector/extension/extensionauth/extensionauthtest"
+package extensionauthtest
 
 import (
 	"context"
@@ -21,12 +18,12 @@ type nopServer struct {
 	component.ShutdownFunc
 }
 
-// Authenticate implements extensionauth.Server.
 func (n *nopServer) Authenticate(ctx context.Context, _ map[string][]string) (context.Context, error) {
-	return ctx, nil
+	_ = "STUB: not implemented"
+	return *new(context.Context), nil
 }
 
-// NewNopServer returns a new extension.Extension that implements the extensionauth.Server.
 func NewNopServer() extension.Extension {
-	return &nopServer{}
+	_ = "STUB: not implemented"
+	return *new(extension.Extension)
 }

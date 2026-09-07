@@ -1,7 +1,4 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package scraper // import "go.opentelemetry.io/collector/scraper"
+package scraper
 
 import (
 	"context"
@@ -12,32 +9,21 @@ import (
 
 var errNilFunc = errors.New("nil scrape func")
 
-// ScrapeFunc scrapes data.
 type ScrapeFunc[T any] func(context.Context) (T, error)
 
-// Option apply changes to internal options.
 type Option interface {
 	apply(*baseScraper)
 }
 
 type scraperOptionFunc func(*baseScraper)
 
-func (of scraperOptionFunc) apply(e *baseScraper) {
-	of(e)
-}
+func (of scraperOptionFunc) apply(e *baseScraper) { _ = "STUB: not implemented"; return }
 
-// WithStart sets the function that will be called on startup.
-func WithStart(start component.StartFunc) Option {
-	return scraperOptionFunc(func(o *baseScraper) {
-		o.StartFunc = start
-	})
-}
+func WithStart(start component.StartFunc) Option { _ = "STUB: not implemented"; return *new(Option) }
 
-// WithShutdown sets the function that will be called on shutdown.
 func WithShutdown(shutdown component.ShutdownFunc) Option {
-	return scraperOptionFunc(func(o *baseScraper) {
-		o.ShutdownFunc = shutdown
-	})
+	_ = "STUB: not implemented"
+	return *new(Option)
 }
 
 type baseScraper struct {
@@ -45,14 +31,7 @@ type baseScraper struct {
 	component.ShutdownFunc
 }
 
-// newBaseScraper returns the internal settings starting from the default and applying all options.
 func newBaseScraper(options []Option) baseScraper {
-	// Start from the default options:
-	bs := baseScraper{}
-
-	for _, op := range options {
-		op.apply(&bs)
-	}
-
-	return bs
+	_ = "STUB: not implemented"
+	return *new(baseScraper)
 }

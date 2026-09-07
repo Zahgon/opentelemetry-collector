@@ -1,7 +1,4 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package exporterhelper // import "go.opentelemetry.io/collector/exporter/exporterhelper"
+package exporterhelper
 
 import (
 	"go.opentelemetry.io/otel/attribute"
@@ -12,42 +9,28 @@ import (
 	"go.opentelemetry.io/collector/exporter/exporterhelper/internal"
 )
 
-// Option apply changes to BaseExporter.
 type Option = internal.Option
 
-// WithStart overrides the default Start function for an exporter.
-// The default start function does nothing and always returns nil.
-func WithStart(start component.StartFunc) Option {
-	return internal.WithStart(start)
-}
+func WithStart(start component.StartFunc) Option { _ = "STUB: not implemented"; return *new(Option) }
 
-// WithShutdown overrides the default Shutdown function for an exporter.
-// The default shutdown function does nothing and always returns nil.
 func WithShutdown(shutdown component.ShutdownFunc) Option {
-	return internal.WithShutdown(shutdown)
+	_ = "STUB: not implemented"
+	return *new(Option)
 }
 
-// WithTimeout overrides the default TimeoutConfig for an exporter.
-// The default TimeoutConfig is 5 seconds.
 func WithTimeout(timeoutConfig TimeoutConfig) Option {
-	return internal.WithTimeout(timeoutConfig)
+	_ = "STUB: not implemented"
+	return *new(Option)
 }
 
-// WithRetry overrides the default configretry.BackOffConfig for an exporter.
-// The default configretry.BackOffConfig is to disable retries.
 func WithRetry(config configretry.BackOffConfig) Option {
-	return internal.WithRetry(config)
+	_ = "STUB: not implemented"
+	return *new(Option)
 }
 
-// WithCapabilities overrides the default Capabilities() function for a Consumer.
-// The default is non-mutable data.
-// TODO: Verify if we can change the default to be mutable as we do for processors.
 func WithCapabilities(capabilities consumer.Capabilities) Option {
-	return internal.WithCapabilities(capabilities)
+	_ = "STUB: not implemented"
+	return *new(Option)
 }
 
-// WithAttrs adds extra attributes to the metrics produced by the exporter
-// The default set of extra attribute is empty
-func WithAttrs(attrs ...attribute.KeyValue) Option {
-	return internal.WithAttributes(attrs...)
-}
+func WithAttrs(attrs ...attribute.KeyValue) Option { _ = "STUB: not implemented"; return *new(Option) }

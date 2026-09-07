@@ -1,12 +1,8 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package xconnector // import "go.opentelemetry.io/collector/connector/xconnector"
+package xconnector
 
 import (
 	"go.opentelemetry.io/collector/connector/internal"
 	"go.opentelemetry.io/collector/consumer/xconsumer"
-	"go.opentelemetry.io/collector/internal/fanoutconsumer"
 	"go.opentelemetry.io/collector/pipeline"
 )
 
@@ -23,14 +19,8 @@ type profilesRouter struct {
 }
 
 func NewProfilesRouter(cm map[pipeline.ID]xconsumer.Profiles) ProfilesRouterAndConsumer {
-	consumers := make([]xconsumer.Profiles, 0, len(cm))
-	for _, cons := range cm {
-		consumers = append(consumers, cons)
-	}
-	return &profilesRouter{
-		Profiles:   fanoutconsumer.NewProfiles(consumers),
-		BaseRouter: internal.NewBaseRouter(fanoutconsumer.NewProfiles, cm),
-	}
+	_ = "STUB: not implemented"
+	return *new(ProfilesRouterAndConsumer)
 }
 
-func (r *profilesRouter) privateFunc() {}
+func (r *profilesRouter) privateFunc() { _ = "STUB: not implemented"; return }

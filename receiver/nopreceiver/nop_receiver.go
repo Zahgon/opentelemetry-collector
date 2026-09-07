@@ -1,7 +1,4 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package nopreceiver // import "go.opentelemetry.io/collector/receiver/nopreceiver"
+package nopreceiver
 
 import (
 	"context"
@@ -10,36 +7,29 @@ import (
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/consumer/xconsumer"
 	"go.opentelemetry.io/collector/receiver"
-	"go.opentelemetry.io/collector/receiver/nopreceiver/internal/metadata"
 	"go.opentelemetry.io/collector/receiver/xreceiver"
 )
 
-// NewFactory returns a receiver.Factory that constructs nop receivers.
-func NewFactory() receiver.Factory {
-	return xreceiver.NewFactory(
-		metadata.Type,
-		func() component.Config { return &struct{}{} },
-		xreceiver.WithTraces(createTraces, metadata.TracesStability),
-		xreceiver.WithMetrics(createMetrics, metadata.MetricsStability),
-		xreceiver.WithProfiles(createProfiles, metadata.ProfilesStability),
-		xreceiver.WithLogs(createLogs, metadata.LogsStability),
-	)
-}
+func NewFactory() receiver.Factory { _ = "STUB: not implemented"; return *new(receiver.Factory) }
 
 func createTraces(context.Context, receiver.Settings, component.Config, consumer.Traces) (receiver.Traces, error) {
-	return nopInstance, nil
+	_ = "STUB: not implemented"
+	return *new(receiver.Traces), nil
 }
 
 func createMetrics(context.Context, receiver.Settings, component.Config, consumer.Metrics) (receiver.Metrics, error) {
-	return nopInstance, nil
+	_ = "STUB: not implemented"
+	return *new(receiver.Metrics), nil
 }
 
 func createLogs(context.Context, receiver.Settings, component.Config, consumer.Logs) (receiver.Logs, error) {
-	return nopInstance, nil
+	_ = "STUB: not implemented"
+	return *new(receiver.Logs), nil
 }
 
 func createProfiles(context.Context, receiver.Settings, component.Config, xconsumer.Profiles) (xreceiver.Profiles, error) {
-	return nopInstance, nil
+	_ = "STUB: not implemented"
+	return *new(xreceiver.Profiles), nil
 }
 
 var nopInstance = &nopReceiver{}

@@ -1,9 +1,6 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
 //go:generate mdatagen metadata.yaml
 
-package batchprocessor // import "go.opentelemetry.io/collector/processor/batchprocessor"
+package batchprocessor
 
 import (
 	"context"
@@ -12,36 +9,20 @@ import (
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/processor"
-	"go.opentelemetry.io/collector/processor/batchprocessor/internal/metadata"
 )
 
 const (
 	defaultSendBatchSize = uint32(8192)
 	defaultTimeout       = 200 * time.Millisecond
 
-	// defaultMetadataCardinalityLimit should be set to the number
-	// of metadata configurations the user expects to submit to
-	// the collector.
 	defaultMetadataCardinalityLimit = 1000
 )
 
-// NewFactory returns a new factory for the Batch processor.
-func NewFactory() processor.Factory {
-	return processor.NewFactory(
-		metadata.Type,
-		createDefaultConfig,
-		processor.WithTraces(createTraces, metadata.TracesStability),
-		processor.WithMetrics(createMetrics, metadata.MetricsStability),
-		processor.WithLogs(createLogs, metadata.LogsStability),
-	)
-}
+func NewFactory() processor.Factory { _ = "STUB: not implemented"; return *new(processor.Factory) }
 
 func createDefaultConfig() component.Config {
-	return &Config{
-		SendBatchSize:            defaultSendBatchSize,
-		Timeout:                  defaultTimeout,
-		MetadataCardinalityLimit: defaultMetadataCardinalityLimit,
-	}
+	_ = "STUB: not implemented"
+	return *new(component.Config)
 }
 
 func createTraces(
@@ -50,7 +31,8 @@ func createTraces(
 	cfg component.Config,
 	nextConsumer consumer.Traces,
 ) (processor.Traces, error) {
-	return newTracesBatchProcessor(set, nextConsumer, cfg.(*Config))
+	_ = "STUB: not implemented"
+	return *new(processor.Traces), nil
 }
 
 func createMetrics(
@@ -59,7 +41,8 @@ func createMetrics(
 	cfg component.Config,
 	nextConsumer consumer.Metrics,
 ) (processor.Metrics, error) {
-	return newMetricsBatchProcessor(set, nextConsumer, cfg.(*Config))
+	_ = "STUB: not implemented"
+	return *new(processor.Metrics), nil
 }
 
 func createLogs(
@@ -68,5 +51,6 @@ func createLogs(
 	cfg component.Config,
 	nextConsumer consumer.Logs,
 ) (processor.Logs, error) {
-	return newLogsBatchProcessor(set, nextConsumer, cfg.(*Config))
+	_ = "STUB: not implemented"
+	return *new(processor.Logs), nil
 }

@@ -1,7 +1,4 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package memorylimiterextension // import "go.opentelemetry.io/collector/extension/memorylimiterextension"
+package memorylimiterextension
 
 //go:generate mdatagen metadata.yaml
 
@@ -10,26 +7,16 @@ import (
 
 	"go.opentelemetry.io/collector/component"
 	"go.opentelemetry.io/collector/extension"
-	"go.opentelemetry.io/collector/extension/memorylimiterextension/internal/metadata"
-	"go.opentelemetry.io/collector/internal/memorylimiter"
 )
 
-// NewFactory returns a new factory for the Memory Limiter extension.
-func NewFactory() extension.Factory {
-	return extension.NewFactory(
-		metadata.Type,
-		createDefaultConfig,
-		create,
-		metadata.ExtensionStability,
-	)
-}
+func NewFactory() extension.Factory { _ = "STUB: not implemented"; return *new(extension.Factory) }
 
-// CreateDefaultConfig creates the default configuration for extension. Notice
-// that the default configuration is expected to fail for this extension.
 func createDefaultConfig() component.Config {
-	return memorylimiter.NewDefaultConfig()
+	_ = "STUB: not implemented"
+	return *new(component.Config)
 }
 
 func create(_ context.Context, set extension.Settings, cfg component.Config) (extension.Extension, error) {
-	return newMemoryLimiter(cfg.(*Config), set.Logger)
+	_ = "STUB: not implemented"
+	return *new(extension.Extension), nil
 }

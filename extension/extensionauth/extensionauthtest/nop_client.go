@@ -1,7 +1,4 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package extensionauthtest // import "go.opentelemetry.io/collector/extension/extensionauth/extensionauthtest"
+package extensionauthtest
 
 import (
 	"go.opentelemetry.io/collector/component"
@@ -22,8 +19,7 @@ type nopClient struct {
 	extensionauth.ClientPerRPCCredentialsFunc
 }
 
-// NewNopClient returns a new [extension.Extension] that implements the [extensionauth.HTTPClient] and [extensionauth.GRPCClient].
-// For HTTP requests it returns the base RoundTripper and for gRPC requests it returns a nil [credentials.PerRPCCredentials].
 func NewNopClient() extension.Extension {
-	return &nopClient{}
+	_ = "STUB: not implemented"
+	return *new(extension.Extension)
 }

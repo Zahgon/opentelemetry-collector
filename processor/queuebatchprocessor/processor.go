@@ -1,59 +1,42 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package queuebatchprocessor // import "go.opentelemetry.io/collector/processor/queuebatchprocessor"
+package queuebatchprocessor
 
 import (
 	"context"
 
-	"go.opentelemetry.io/collector/config/configoptional"
 	"go.opentelemetry.io/collector/consumer"
 	"go.opentelemetry.io/collector/consumer/xconsumer"
 	"go.opentelemetry.io/collector/exporter"
 	"go.opentelemetry.io/collector/exporter/exporterhelper"
-	"go.opentelemetry.io/collector/exporter/exporterhelper/xexporterhelper"
 	"go.opentelemetry.io/collector/processor"
 	"go.opentelemetry.io/collector/processor/xprocessor"
 )
 
 func exporterSettings(set processor.Settings) exporter.Settings {
-	return exporter.Settings{
-		ID:                set.ID,
-		TelemetrySettings: set.TelemetrySettings,
-		BuildInfo:         set.BuildInfo,
-	}
+	_ = "STUB: not implemented"
+	return *new(exporter.Settings)
 }
 
-// queueOptions returns the exporterhelper options shared by every signal.
 func queueOptions(cfg *Config, next consumer.Capabilities) []exporterhelper.Option {
-	var mutates bool
-	switch {
-	case cfg.Batch.HasValue():
-		mutates = true
-	case cfg.StorageID != nil:
-		mutates = false
-	default:
-		mutates = next.MutatesData
-	}
-	return []exporterhelper.Option{
-		exporterhelper.WithQueue(configoptional.Some(*cfg)),
-		exporterhelper.WithTimeout(exporterhelper.TimeoutConfig{Timeout: 0}),
-		exporterhelper.WithCapabilities(consumer.Capabilities{MutatesData: mutates}),
-	}
+	_ = "STUB: not implemented"
+	return nil
 }
 
 func newTracesProcessor(ctx context.Context, set processor.Settings, cfg *Config, next consumer.Traces) (processor.Traces, error) {
-	return exporterhelper.NewTraces(ctx, exporterSettings(set), cfg, next.ConsumeTraces, queueOptions(cfg, next.Capabilities())...)
+	_ = "STUB: not implemented"
+	return *new(processor.Traces), nil
 }
 
 func newMetricsProcessor(ctx context.Context, set processor.Settings, cfg *Config, next consumer.Metrics) (processor.Metrics, error) {
-	return exporterhelper.NewMetrics(ctx, exporterSettings(set), cfg, next.ConsumeMetrics, queueOptions(cfg, next.Capabilities())...)
+	_ = "STUB: not implemented"
+	return *new(processor.Metrics), nil
 }
 
 func newLogsProcessor(ctx context.Context, set processor.Settings, cfg *Config, next consumer.Logs) (processor.Logs, error) {
-	return exporterhelper.NewLogs(ctx, exporterSettings(set), cfg, next.ConsumeLogs, queueOptions(cfg, next.Capabilities())...)
+	_ = "STUB: not implemented"
+	return *new(processor.Logs), nil
 }
 
 func newProfilesProcessor(ctx context.Context, set processor.Settings, cfg *Config, next xconsumer.Profiles) (xprocessor.Profiles, error) {
-	return xexporterhelper.NewProfiles(ctx, exporterSettings(set), cfg, next.ConsumeProfiles, queueOptions(cfg, next.Capabilities())...)
+	_ = "STUB: not implemented"
+	return *new(xprocessor.Profiles), nil
 }

@@ -1,7 +1,4 @@
-// Copyright The OpenTelemetry Authors
-// SPDX-License-Identifier: Apache-2.0
-
-package otelcol // import "go.opentelemetry.io/collector/otelcol"
+package otelcol
 
 import (
 	"errors"
@@ -27,25 +24,7 @@ type configSettings struct {
 	Service    service.Config                                `mapstructure:"service"`
 }
 
-// unmarshal the configSettings from a confmap.Conf.
-// After the config is unmarshalled, `Validate()` must be called to validate.
 func unmarshal(v *confmap.Conf, factories Factories) (*configSettings, error) {
-	if factories.Telemetry == nil {
-		return nil, errNilTelemetryFactory
-	}
-
-	// Unmarshal top level sections and validate.
-	cfg := &configSettings{
-		Receivers:  configunmarshaler.NewConfigs(factories.Receivers),
-		Processors: configunmarshaler.NewConfigs(factories.Processors),
-		Exporters:  configunmarshaler.NewConfigs(factories.Exporters),
-		Connectors: configunmarshaler.NewConfigs(factories.Connectors),
-		Extensions: configunmarshaler.NewConfigs(factories.Extensions),
-		// TODO: Add a component.ServiceFactory to allow this to be defined by the Service.
-		Service: service.Config{
-			Telemetry: factories.Telemetry.CreateDefaultConfig(),
-		},
-	}
-	err := v.Unmarshal(&cfg)
-	return cfg, err
+	_ = "STUB: not implemented"
+	return nil, nil
 }
